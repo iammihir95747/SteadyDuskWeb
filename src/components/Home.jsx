@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <>
       <nav className="navbar">
-        <div className="nav-left">
+        <div className="nav-left">  
           <div className="nav-logo">Render</div>
           <div className="menu-toggle" onClick={toggleMenu}>
             ☰ {/* Hamburger Icon */}

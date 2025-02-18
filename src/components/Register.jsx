@@ -34,20 +34,20 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-  
+
     try {
-      const response = await fetch(`${API_BASE}/register`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.error || "Registration failed ❌");
       }
-  
+
       toast.success("✅ Registration Successful!");
       setUsername("");
       setEmail("");
@@ -71,7 +71,7 @@ function Register() {
               placeholder="Username"
             />
             {errors.username && <span className="error">{errors.username}</span>}
-            
+
             <input
               name="email"
               value={email}
@@ -79,7 +79,7 @@ function Register() {
               placeholder="Email"
             />
             {errors.email && <span className="error">{errors.email}</span>}
-            
+
             <input
               type="password"
               name="password"
@@ -88,7 +88,7 @@ function Register() {
               placeholder="Password"
             />
             {errors.password && <span className="error">{errors.password}</span>}
-            
+
             <div className="submitcontainer">
               <div className="ca">
                 Already Have an account?{" "}
@@ -102,8 +102,8 @@ function Register() {
                 Sign Up
               </button>
               <ToastContainer
-                position="top-center"
-                autoClose={5000}
+                position="top-right"
+                autoClose={3000}
                 hideProgressBar={false}
                 theme="dark"
                 transition={Bounce}

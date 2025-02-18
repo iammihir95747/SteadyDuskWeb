@@ -17,7 +17,7 @@ function Login() {
     }
   
     try {
-      console.log("Sending Login Request:", { email, password }); // ✅ Debug
+      console.log("Sending Login Request:", { email, password }); 
   
       const response = await fetch(`${API_BASE}/login`, {
         method: "POST",
@@ -26,7 +26,7 @@ function Login() {
       });
   
       const data = await response.json();
-      console.log("Login Response:", data); // ✅ Debug
+      console.log("Login Response:", data); 
   
       if (!response.ok) {
         throw new Error(data.error || "Login Failed ❌");
@@ -37,7 +37,7 @@ function Login() {
       navigate("/profile");
     } catch (error) {
       toast.error(error.message);
-      console.error("Login Error:", error.message); // ✅ Debug
+      console.error("Login Error:", error.message); 
     }
   };
 
@@ -79,7 +79,7 @@ function Login() {
               <button type="submit" className="subbtn">
                 Login
               </button>
-              <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} theme="dark" transition={Bounce} />
+              <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} theme="dark" transition={Bounce} />
             </div>
           </div>
         </form>
