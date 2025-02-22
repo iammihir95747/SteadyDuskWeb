@@ -5,7 +5,7 @@ import About from './components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
 import './App.css';
-import Register from './components/Register';
+import Register from './Auth/Register';
 import Login from './components/Login';
 import Students from './Pages/Students';
 import Homepage from './components/Homepage';

@@ -1,0 +1,174 @@
+.register-container{
+    display: grid;
+    row-gap: 10px;
+    grid-template-columns: 40% 60%;
+    padding: 5px;
+    margin-top: -20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+.register-img{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.register-aside{
+    background-image: url("./signup.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    height:100vh;
+    padding: 0;
+}
+.register{
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    height:100vh;
+    justify-content: center;
+    align-items: center;   
+    display: flex; 
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:10px;
+    height: 100vh;
+}
+
+.form-block{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:-50px;
+}
+.form-item{
+    
+    width: 500px;
+    border-radius: 1px;
+    margin:7px;
+    border: 0px;
+    border-radius: 4px;
+    background-color: rgba(245, 245, 245, 0.767);
+    border: 0.5px solid white;
+    display: grid;
+}
+
+.form-item:hover{
+    border: 0.5px solid rgb(80, 172, 233);
+    border-radius: 4px;
+}
+
+.form input{
+  padding: 6px;
+}
+
+input::placeholder {
+    opacity: 0.5;
+    font-size: 16px;
+    color: black;
+    position:absolute;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  }
+
+.titilereg{
+    margin-top: -1px;
+    letter-spacing: 1px;
+    position: relative;
+    margin: 0;
+    font-size: 40px;
+    width: 100%;
+    padding: 0;
+    font-family: sans-serif;
+}
+.para{
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     color: rgb(98, 188, 240);
+     width: 100%;
+     font-size: small;
+}
+
+.cheakbox{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    margin-left: 1px;
+    margin-top: 5px;
+}
+
+.cheakout{
+    margin-left: 5px;
+    margin-right: 6px;
+}
+.sub{
+    align-items: left;
+    margin-right: 350px;
+    margin-top: 6px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 6px;
+    padding-bottom:6px;
+    background-color: rgb(110, 156, 255);
+    border: 0px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+.sub:hover{
+    background-color: rgb(66, 110, 233);
+    cursor: pointer;
+    transition: 0.5s ease;   
+}
+
+input [type=cheakbox] {
+    visibility: hidden;
+}
+
+.labelitem{
+    margin-left: 0px;
+    width:100%;
+    margin-top: -5px;
+    font-size: small;
+    font-weight: 300;
+}
+
+.phone-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.phone-input ::placeholder{
+    margin-left: 30%;
+}
+
+.country-code {
+    position: absolute;
+    left: 10px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    padding: 0 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.phone-input input {
+    width: 100%;
+    padding-left: 30px; 
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}

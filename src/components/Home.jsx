@@ -16,7 +16,7 @@ const Home = () => {
     <>
       <nav className="navbar">
         <div className="nav-left">  
-          <div className="nav-logo">Render</div>
+          <div className="nav-logo">Steady Dusk</div>
           <div className="menu-toggle" onClick={toggleMenu}>
             ☰ {/* Hamburger Icon */}
           </div>
@@ -38,22 +38,25 @@ const Home = () => {
               About
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/" className="navlink" onClick={toggleMenu}>
               Admin
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         <div className="nav-right">
-          <button className="nav-button" onClick={handleRegister}>
-            Sign Up
-          </button>
-          <button className="nav-button" onClick={handleLogin}>
+
+        <button className="nav-button-log" onClick={handleLogin}>
             Login
           </button>
+          <button className="nav-button" onClick={handleRegister}>
+            Get Started - It's free
+          </button>
+         
         </div>
       </nav>
+      <hr className="hrfornav" />
     </>
   );
 };

@@ -15,7 +15,7 @@
     margin-top: 170px;
 }
 .homepagecss{
-	color: #fff;
+	color: #000000;
 	font-size:50px;
 	letter-spacing: 1px;
 	font-family: "jost" , serif;
@@ -25,7 +25,7 @@
 	width: 70%; /* Medium size width */
 	max-width:5000px; /* Limit max width */
 	margin: 20px auto; /* Center horizontally */
-	border: 1px solid rgb(255, 255, 255); /* Customize line */
+	border: 1px solid rgb(0, 0, 0); /* Customize line */
   }
   
   @media (max-width: 768px) {
@@ -47,7 +47,7 @@
   }
 
   .hb{
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-family: "Lato", serif;
   font-weight: 400;
   font-style: normal;
