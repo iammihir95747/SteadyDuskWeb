@@ -3,6 +3,9 @@ import React from 'react';
 import './Register.css';
 import { toast, ToastContainer, Bounce } from "react-toastify";
 
+const API_BASE = import.meta.env.VITE_BASE_URL;
+
+
 function Register() {
 
   const [username, setUsername] = useState("");
@@ -63,6 +66,8 @@ function Register() {
       setUsername("");
       setEmail("");
       setPassword("");
+      setAddress("");
+      setPhone("");
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(error.message || "Something went wrong ❌");
