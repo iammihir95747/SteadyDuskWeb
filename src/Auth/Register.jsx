@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-import './register.css';
+import './Register.css';
 import { toast, ToastContainer, Bounce } from "react-toastify";
 
 function Register() {
