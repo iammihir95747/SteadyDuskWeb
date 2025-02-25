@@ -23,6 +23,18 @@
     height:100vh;
     padding: 0;
 }
+
+.login-aside{
+    background-image: url("./log.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -8px;
+    height:100vh;
+    padding: 0;
+}
+
+
 .register{
     background-color: rgb(255, 255, 255);
     margin: 0;

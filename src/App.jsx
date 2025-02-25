@@ -6,12 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
 import './App.css';
 import Register from './Auth/Register';
-import Login from './components/Login';
+import Login from './Auth/Login';
 import Students from './Pages/Students';
 import Homepage from './components/Homepage';
-import Profile from './components/Profile';
+import Profile from './Auth/Profile';
 import Services from './components/Services';
-import ForgotPassword from './components/ForgotPassword';
 
 
 
@@ -30,7 +29,6 @@ const App = () => {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Profile" element={<Profile />} />
                     <Route path='/Students'  element={<Students />}/>
-                    <Route path='/ForgotPassword'  element={<ForgotPassword />}/>
                 </Routes>
                 
             </div>

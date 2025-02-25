@@ -120,10 +120,10 @@ function Register() {
                         <div className="phone-input" 
                         
                       
-                        
-                        style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              
                        
-                            <input className='form-item' type="tel" placeholder="XXX-XXX-XXXX" style={{ paddingLeft: '50px' }} required={true} 
+         <input className='form-item' type="tel" placeholder="XXX-XXX-XXXX" style={{ paddingLeft: '50px' }} required={true} 
                             name='phone'
                             value={phone}
                             onChange={handleChange}
@@ -140,7 +140,6 @@ function Register() {
 
                         <div className="subbtn">
                             <button className='sub' type='submit'>Register</button>
-
                             {loading && <div className="loader"></div>}
                       <ToastContainer
                 position="top-right"

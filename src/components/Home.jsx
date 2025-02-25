@@ -9,7 +9,7 @@ const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleRegister = () => navigate("/Register");
-  const handleLogin = () => navigate("/login");
+  const handleLogin = () => navigate("/Login");
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
