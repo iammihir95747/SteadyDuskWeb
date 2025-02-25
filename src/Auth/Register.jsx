@@ -50,7 +50,7 @@ function Register() {
 
   
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/register`, {
+      const response = await fetch(`https://server-node-eef9.onrender.com/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password , address , phone }),
