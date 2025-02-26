@@ -1,42 +1,47 @@
-import { useState } from 'react';
-import React from 'react';
-import './Register.css';
+import { useState } from "react";
 import { toast, ToastContainer, Bounce } from "react-toastify";
+import "./Register.css";
 
-const API_BASE = import.meta.env.VITE_BASE_URL;
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:10000";
 
+const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    address: "",
+    phone: "",
+    agreeTerms: false,
+  });
 
-function Register() {
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [cheak, setCheak] = useState("");
   const [errors, setErrors] = useState({});
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "username") setUsername(value);
-    if (name === "email") setEmail(value);
-    if (name === "password") setPassword(value);
-    if (name === "address") setAddress(value);  
-    if (name === "phone") setPhone(value);      
-    if (name === "cheak") setCheak(value);      
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
-  
 
   const validate = () => {
     const newErrors = {};
-    if (!username) newErrors.username = "Username is required";
-    if (!email) {
+    if (!formData.username) newErrors.username = "Username is required";
+    if (!formData.email) {
       newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email is invalid";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
     }
-    if (!password) newErrors.password = "Password is required";
+    if (!formData.password) newErrors.password = "Password is required";
+    if (!formData.address) newErrors.address = "Address is required";
+    if (!formData.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = "Invalid phone number (10 digits required)";
+    }
+    if (!formData.agreeTerms) newErrors.agreeTerms = "You must agree to the terms";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -45,114 +50,84 @@ function Register() {
     e.preventDefault();
     if (!validate()) return;
 
-    setloading(true);
+    setLoading(true);
 
-
-  
     try {
-      const response = await fetch(`https://server-node-eef9.onrender.com/register`, {
+      const response = await fetch(`${API_BASE}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password , address , phone }),
+        body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
-      if (!response.ok) {
-        throw new Error(data.error || "Registration failed ❌");
-      }
-  
+
+      if (!response.ok) throw new Error(data.error || "Registration failed ❌");
+
       toast.success("✅ Registration Successful!");
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setAddress("");
-      setPhone("");
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        address: "",
+        phone: "",
+        agreeTerms: false,
+      });
     } catch (error) {
-      console.error("Registration error:", error);
       toast.error(error.message || "Something went wrong ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
-    return (
+  return (
+    <div className="register-container">
+      <div className="register-aside">
+        <img src="register-img" alt="" />
+      </div>
+      <div className="register">
+        <div className="form">
+          <form className="form-block" autoComplete="off" onSubmit={handleSubmit}>
+            <h1 className="titilereg">Create Your Account</h1>
+            <p className="para">It's free for 14 days. No credit card required.</p>
 
-        <div className='register-container'>
-            <div className="register-aside"></div>
-            <div className="register">
-                <div className="form">
-                    <form action="/" className='form-block' autoComplete='off'   
-                    onSubmit={handleSubmit}
-                    >
-                        <h1 className='titilereg'>Create Your Account</h1>
-                        <p className='para'>It's free for 14 days. No credit card required.</p>
-                        
-                        <label className='labelitem' htmlFor="username">Username *</label>
-                        <input className='form-item'
-                        name='username'
-                        value={username}
-                        onChange={handleChange}
+            {["username", "email", "password", "address", "phone"].map((field) => (
+              <div key={field}>
+                <label className="labelitem" htmlFor={field}>
+                  {field.charAt(0).toUpperCase() + field.slice(1)} *
+                </label>
+                <input
+                  className="form-item"
+                  type={field === "email" ? "email" : field === "password" ? "password" : "text"}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  placeholder={`Enter ${field}`}
+                  required
+                  autoComplete="off"
+                />
+                {errors[field] && <p className="error">{errors[field]}</p>}
+              </div>
+            ))}
 
-                        type="text" placeholder="Username" required={true} />
 
-                        <label className='labelitem' htmlFor="email">Email Address *</label>
-                        <input className='form-item'
-                        name='email'
-                        value={email}
-                        onChange={handleChange}
-                        type="email" placeholder="Your email.com"   required={true} autoComplete='off' />
-
-                        <label className='labelitem' htmlFor="password">Password *</label>
-                        <input className='form-item'
-                        name='password'
-                        value={password}
-                        onChange={handleChange}
-                        type="password" placeholder="Password" required={true} autoComplete='new-password' />
-
-                        <label className='labelitem' htmlFor="address">Address</label>
-                        <input className='form-item'
-                        name='address'
-                        value={address}
-                        onChange={handleChange}
-
-                        type="text" placeholder="Address" />
-
-                        <label className='labelitem' htmlFor="phone">Phone Number *</label>
-                        <div className="phone-input" 
-                        
-                      
-            style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-              
-                       
-         <input className='form-item' type="tel" placeholder="XXX-XXX-XXXX" style={{ paddingLeft: '50px' }} required={true} 
-                            name='phone'
-                            value={phone}
-                            onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="cheakbox">
-                            <input type="checkbox" className='cheakout' 
-                            name='cheak'
-                            value={cheak}
-                            onChange={handleChange}
-                            /> By creating a Classe365 account, you're agreeing to accept our terms of service.
-                        </div>
-
-                        <div className="subbtn">
-                            <button className='sub' type='submit'>Register</button>
-                            {loading && <div className="loader"></div>}
-                      <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                theme="dark"
-                transition={Bounce} />
-                        </div>
-                    </form>
-                </div>
+            <div className="checkbox">
+              <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} />
+              <span>By creating an account, you agree to our terms of service.</span>
+              {errors.agreeTerms && <p className="error">{errors.agreeTerms}</p>}
             </div>
+
+            <div className="subbtn">
+              <button className="sub" type="submit" disabled={loading}>
+                {loading ? "Registering..." : "Register"}
+              </button>
+            </div>
+
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} theme="dark" transition={Bounce} />
+          </form>
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
 
 export default Register;
