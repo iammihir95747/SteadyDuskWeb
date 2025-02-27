@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
-const API_BASE = import.meta.env.VITE_BASE_URL; // ✅ Corrected variable name
+const API_BASE = "https://server-node-eef9.onrender.com";
+
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -17,7 +18,7 @@ function Profile() {
       }
 
       try {
-        const response = await fetch(`${API_BASE}/profile`, {
+        const response = await fetch(`${API_BASE}/Auth/profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

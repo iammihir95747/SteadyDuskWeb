@@ -4,9 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Bounce } from "react-toastify";
 import { useState } from 'react';
 
-
-
-const API_BASE = import.meta.env.VITE_BASE_URL;
+const API_BASE = "https://server-node-eef9.onrender.com";
 
 
 function Register() {
@@ -25,7 +23,7 @@ function Register() {
          try {
            console.log("Sending Login Request:", { email, password }); 
        
-           const response = await fetch(`${API_BASE}/login`, {
+           const response = await fetch(`${API_BASE}/Auth/login`, {
              method: "POST",
              headers: { "Content-Type": "application/json" },
              body: JSON.stringify({ email, password }), 

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./Register.css";
+import { toast, Toaster } from "react-hot-toast";
+
 
 const API_BASE = "https://server-node-eef9.onrender.com";
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -28,10 +31,10 @@ const Register = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Registration failed ❌");
 
-      alert("✅ Registration Successful!");
+      toast.success("✅ Registration Successful!");
       setFormData({ username: "", email: "", password: "", address: "", phone: "", agreeTerms: false });
     } catch (error) {
-      alert(error.message || "Something went wrong ❌");
+      toast.error(error.message || "Something went wrong ❌");
     } finally {
       setLoading(false);
     }
@@ -78,6 +81,10 @@ const Register = () => {
           <button className="sub" type="submit" disabled={loading}>
             {loading ? "Registering..." : "Register"}
           </button>
+          <div><Toaster position="top-right"
+           reverseOrder={false}
+           color='#fff'
+          /></div>
         </form>
       </div>
     </div>
