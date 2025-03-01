@@ -54,7 +54,7 @@ function Register() {
                     <form action="/" className='form-block' autoComplete='off'
                      onSubmit={handleLogin}
                     >
-                        <h1 className='titilereg'>Create Your Account</h1>
+                        <h1 className='titilereg'>Login</h1>
                         <p className='para'>It's free for 14 days. No credit card required.</p>
 
                       
