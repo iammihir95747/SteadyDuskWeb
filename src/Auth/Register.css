@@ -41,6 +41,7 @@
 .register {
     background-color: rgb(255, 255, 255);
     margin: 0;
+    margin-top: 70px;
     padding: 0;
     height: 100vh;
     display: flex;
@@ -84,24 +85,38 @@
 /* ✅ Form input styles */
 .form-item {
     border-radius: 3px;
-    padding: 6px;
+    padding: 10px;
+    padding-right: 125px;
     background-color: rgba(245, 245, 245, 0.767);
     border: 0.5px solid white;
     display: grid;
     width: 100%;
+    border: 0.2px solid black;
+    margin-top: 10px;
+}
+
+.form-item-log{
+    padding: 10px;
+    padding-right: 123px;
+    margin-top: 10px;
 }
 
 /* ✅ Button styling */
 .sub {
     margin-top: 6px;
-    padding: 10px 19px;
-    background-color: rgb(110, 156, 255);
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(66, 115, 219);
     border: 0px;
     font-size: 15px;
     color: #fff;
     font-weight: 400;
-    width: 100%;
+    width: 72%;
     text-align: center;
+    border-radius: 3px;
+}
+.sub:hover{
+    background-color: rgb(105, 105, 228);
+    transition: 0.5s ease-in-out;
 }
 
 /* ✅ Mobile button adjustments */
@@ -109,4 +124,15 @@
     .sub {
         width: 100%;
     }
+}
+
+.checkbox{
+    justify-content: center;
+    display: flex;
+    width: 74%;
+    margin-top: 10px;
+}
+.cheakout{
+
+    margin-left: 20px;
 }

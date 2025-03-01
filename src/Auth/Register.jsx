@@ -49,28 +49,23 @@ const Register = () => {
           <p className="para">It's free for 14 days. No credit card required.</p>
 
           <div>
-            <label className="labelitem" htmlFor="username">Username *</label>
             <input className="form-item" type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Enter username" required />
           </div>
 
           <div>
-            <label className="labelitem" htmlFor="email">Email *</label>
             <input className="form-item" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter email" required />
           </div>
 
           <div>
-            <label className="labelitem" htmlFor="password">Password *</label>
             <input className="form-item" type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter password" required />
           </div>
 
           <div>
-            <label className="labelitem" htmlFor="address">Address *</label>
             <input className="form-item" type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Enter address" required />
           </div>
 
           <div>
-            <label className="labelitem" htmlFor="phone">Phone *</label>
-            <input className="form-item" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter phone" required />
+            <input className="form-item" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter phone Number" required />
           </div>
 
           <div className="checkbox">

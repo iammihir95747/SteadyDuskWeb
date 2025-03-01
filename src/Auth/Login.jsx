@@ -59,14 +59,12 @@ function Register() {
 
                       
 
-                        <label className='labelitem' htmlFor="email">Email Address *</label>
-                        <input className='form-item' type="email" name='email' placeholder="Your email.com" 
+                        <input className='form-item-log' type="email" name='email' placeholder="Your email.com" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required={true} autoComplete='off' />
 
-                        <label className='labelitem' htmlFor="password">Password *</label>
-                        <input className='form-item' type="password" name='password' placeholder="Password"
+                        <input className='form-item-log' type="password" name='password' placeholder="Password"
                         value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         required={true} autoComplete='new-password' />
