@@ -56,7 +56,6 @@ const Home = () => {
          
         </div>
       </nav>
-      <hr className="hrfornav" />
     </>
   );
 };

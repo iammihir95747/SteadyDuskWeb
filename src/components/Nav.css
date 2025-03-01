@@ -1,15 +1,20 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    flex-wrap: wrap;
-    position: sticky;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;  
+  font-family: Arial, sans-serif;
+  color: rgb(7, 7, 7);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;  /* ✅ Keeps navbar at the top */
+  width: 100%; /* ✅ Ensures full width */
+  background-color: white; /* ✅ Avoid transparency issues */
+  box-shadow: 0px 0px 5px 0px rgb(80, 80, 80);
+  z-index: 1000; /* ✅ Keeps it above other elements */
+}
+
+
   .nav-left {
     display: flex;
     align-items: center;
@@ -54,7 +59,7 @@
   }
   
   .navlink:hover{
-    color: rgb(84, 123, 206);
+    color: rgb(10, 10, 10);
     transition: 0.4s ease;
   }
 
@@ -64,7 +69,7 @@
     display: block;
     height: 2px;
     width: 0;
-    background: white;
+    background: rgb(0, 0, 0);
     transition: width 0.3s ease;
     position: absolute;
     bottom: -5px;
@@ -80,8 +85,8 @@
   }
   
   .nav-button {
-   background-color: #5268e5;
-    color: rgb(255, 255, 255);
+   background-color: #000000;
+    color: rgb(253, 253, 253);
     border: none;
     padding: 6px 10px 6px;
     font-weight: 500;
@@ -93,26 +98,30 @@
  
   .nav-button-log{
     background: none;
-    color: rgb(12, 12, 12);
+    color: #000000;
     border: none;
     padding: 4px 10px;
     font-weight: 500;
     font-size: large;
     cursor: pointer;
+    margin-right: 20px;
+    color: #fff;
+    background-color: #000000;
+    border-radius: 10px;
   }
   .nav-button-log:hover{
-    color: #5268e5;
+    color: #ffffff;
     transition: 0.4s ease;
-    
-  }
+    background-color: #000000;
+   
+  } 
 
-  .hrfornav{
-    margin-top: -6px;
-  }
+
   
   .nav-button:hover {
-    background-color: rgb(68, 87, 196);
-    transition: 0.4s ease;
+    background-color: rgb(255, 255, 255);
+    transition: 0.2s ease-in-out;
+    color:#000000;
   }
   
   /* ✅ Responsive Styles */  

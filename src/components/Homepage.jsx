@@ -2,12 +2,14 @@ import React from 'react'
 import './Home.css';
 import DataImage from '../assets/Data.jpg';
 
+
 const Homepage = () => {
   return (
+    <>
     <div className='homebox'>
       <div className="homepagecss">
-        <div className='hb'> <>  &nbsp; Your Next&nbsp;
-          <br />Interactive Experience</></div>
+        <div className='hb'>  FINISH !
+          <br />WHAT  YOU STARTED </div>
         <div className='powerby'></div>
       </div>
       <div className='usercards'>
@@ -15,28 +17,17 @@ const Homepage = () => {
       </div>
       <hr className='homehr' />
 
-
-      <div className="slide1">
-        <div className="slidetitle">
-          <h3>Our Best Colabration With Brands.</h3>
-          <div className="slideimg">
-          </div>
-          <div className="slide-content"></div>
-        </div>
-      </div>
-
-      <div className='card-container'>
-        <div className="card">
-          <div className="cardimage">
-            <img src={DataImage} alt="" height={500} className="dataimg" />
-          </div>
-          <div className="card-content">
-            <h3>Explore More Features</h3>
-            <p>this is the card description</p>
-          </div>
-        </div>
-      </div>
     </div>
+
+    <section className='Card'>
+        <div className="card-main">
+
+          <div className="cardimg"></div>
+          <div className="card-desc"></div>
+        </div>
+
+    </section>
+    </>
   )
 }
 
