@@ -9,7 +9,7 @@ const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-  // ✅ Update `isLoggedIn` when token changes in localStorage
+  // ✅ Update `isLoggedIn` whenever localStorage changes
   useEffect(() => {
     const handleStorageChange = () => {
       setIsLoggedIn(!!localStorage.getItem("token"));
@@ -18,6 +18,11 @@ const Home = () => {
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
+
+  // ✅ Fix: Listen to token changes on login page
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, [localStorage.getItem("token")]); // 🔥 This makes sure `isLoggedIn` updates instantly after login/logout.
 
   const handleRegister = () => {
     navigate("/Register");
@@ -31,7 +36,7 @@ const Home = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // ✅ Remove token
-    setIsLoggedIn(false); // ✅ Update state to hide login and show logout
+    setIsLoggedIn(false); // ✅ Ensure state updates instantly
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
