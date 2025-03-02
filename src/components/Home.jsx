@@ -1,42 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { data, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 
 const Home = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isloggedin, setIsloggedin] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token")); // Sync login state on mount
+  }, []);
 
-  const handleRegister = () =>{
-    window.scrollTo({top:0, behavior:"smooth"});
-    setTimeout(()=> navigate("/Register"),300);
-     setMenuOpen(false); 
-  }
+  const handleRegister = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => navigate("/Register"), 300);
+    setMenuOpen(false);
+  };
 
-  const handleLogin = () =>{
-    window.scrollTo({top:0, behavior:"smooth"});
-    localStorage.setItem("token",data.token);
-    setTimeout(()=> navigate("/Login"),300);
-    setMenuOpen(false)
-  }
-  const handlelogout = () =>{
-     localStorage.removeItem("token", data.token);
-     setIsloggedin(false);
-  }
-  
-  
+  const handleLogin = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Simulating login with a dummy token (Replace this with actual API login)
+    const dummyToken = "your_real_token_here";
+    localStorage.setItem("token", dummyToken);
+    setIsLoggedIn(true);
+
+    setTimeout(() => navigate("/Login"), 300);
+    setMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <>
       <nav className="navbar">
-        <div className="nav-left">  
+        <div className="nav-left">
           <div className="nav-logo">Steady Dusk</div>
           <div className="menu-toggle" onClick={toggleMenu}>
-            ☰ 
+            ☰
           </div>
         </div>
 
@@ -56,45 +64,45 @@ const Home = () => {
               About
             </Link>
           </li>
-          {/* <li>
-            <Link to="/" className="navlink" onClick={toggleMenu}>
-              Admin
-            </Link>
-          </li> */}
         </ul>
- 
+
         <div className="nav-right desktop-only">
-   {isloggedin ? (
-    <button className="nav-button-log" onClick={handlelogout}>
-    Logout
-  </button>
-   ):(<>
-          <button className="nav-button-log" onClick={handleLogin}>
-    Login
-  </button>
-  <button className="nav-button" onClick={handleRegister}>
-    Get Started - It's free
-  </button>
+          {isLoggedIn ? (
+            <button className="nav-button-log" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button className="nav-button-log" onClick={handleLogin}>
+                Login
+              </button>
+              <button className="nav-button" onClick={handleRegister}>
+                Get Started - It's free
+              </button>
+            </>
+          )}
+        </div>
 
-   </>)}
-
-</div>
-
- {menuOpen &&(
-  <div className="mobil-auth-buttons">
-    <hr className="hrformobile" />
-    <button className="nav-button-log-mob" onClick={handleLogin}> 
-     Login
-    </button><br />
-    <button className="nav-button-mob" onClick={handleRegister}>
-      Get Started
-    </button>
-  </div>
- )}
-
-
-
-       
+        {menuOpen && (
+          <div className="mobil-auth-buttons">
+            <hr className="hrformobile" />
+            {!isLoggedIn ? (
+              <>
+                <button className="nav-button-log-mob" onClick={handleLogin}>
+                  Login
+                </button>
+                <br />
+                <button className="nav-button-mob" onClick={handleRegister}>
+                  Get Started
+                </button>
+              </>
+            ) : (
+              <button className="nav-button-log-mob" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
+          </div>
+        )}
       </nav>
     </>
   );
