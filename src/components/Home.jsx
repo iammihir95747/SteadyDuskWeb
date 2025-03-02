@@ -7,22 +7,19 @@ import "./Nav.css";
 const Home = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // ✅ No default token
 
-  // ✅ Update `isLoggedIn` whenever localStorage changes
   useEffect(() => {
     const handleStorageChange = () => {
       setIsLoggedIn(!!localStorage.getItem("token"));
     };
 
+    // ✅ Set isLoggedIn when component mounts
+    handleStorageChange();
+
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
-
-  // ✅ Fix: Listen to token changes on login page
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, [localStorage.getItem("token")]); // 🔥 This makes sure `isLoggedIn` updates instantly after login/logout.
 
   const handleRegister = () => {
     navigate("/Register");
@@ -35,8 +32,8 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // ✅ Remove token
-    setIsLoggedIn(false); // ✅ Ensure state updates instantly
+    localStorage.removeItem("token"); // ✅ Clear token
+    setIsLoggedIn(false); // ✅ Update state instantly
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -46,9 +43,7 @@ const Home = () => {
       <nav className="navbar">
         <div className="nav-left">
           <div className="nav-logo">Steady Dusk</div>
-          <div className="menu-toggle" onClick={toggleMenu}>
-            ☰
-          </div>
+          <div className="menu-toggle" onClick={toggleMenu}>☰</div>
         </div>
 
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
