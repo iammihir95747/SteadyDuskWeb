@@ -9,13 +9,13 @@ const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // ✅ Check if token exists when component loads
+  // ✅ Check if the token exists when the page loads
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
 
-  // ✅ Listen for storage changes (login/logout)
+  // ✅ Listen for changes in localStorage (to update login state)
   useEffect(() => {
     const handleStorageChange = () => {
       setIsLoggedIn(!!localStorage.getItem("token"));
@@ -31,15 +31,12 @@ const Home = () => {
   };
 
   const handleLogin = () => {
-    // ✅ Simulate login (In real case, set this when user logs in)
-    localStorage.setItem("token", "your_fake_token"); // Set token
-    setIsLoggedIn(true); // ✅ Update state immediately
-    navigate("/Homepage"); // Redirect to homepage
+    navigate("/Login"); // ✅ Redirect to actual login page
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token
+    localStorage.removeItem("token"); // ✅ Remove token
     setIsLoggedIn(false); // ✅ Update state immediately
   };
 
