@@ -7,10 +7,12 @@ import "./Nav.css";
 const Home = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Check if user is logged in when the component mounts
   useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token")); // Sync login state on mount
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleRegister = () => {
@@ -21,19 +23,13 @@ const Home = () => {
 
   const handleLogin = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Simulating login with a dummy token (Replace this with actual API login)
-    const dummyToken = "your_real_token_here";
-    localStorage.setItem("token", dummyToken);
-    setIsLoggedIn(true);
-
-    setTimeout(() => navigate("/Login"), 300);
+    setTimeout(() => navigate("/Login"), 300); // Redirect to Login page
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    localStorage.removeItem("token"); // Remove token
+    setIsLoggedIn(false); // Update state
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
