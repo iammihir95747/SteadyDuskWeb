@@ -40,7 +40,7 @@ function Register() {
        
            toast.success("✅ Login Successful");
            localStorage.setItem("token", data.token);
-           navigate("/profile");
+           navigate("/Homepage");
          } catch (error) {
            toast.error(error.message);
            console.error("Login Error:", error.message); 
