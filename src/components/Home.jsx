@@ -7,12 +7,15 @@ import "./Nav.css";
 const Home = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-  // Check if user is logged in when the component mounts
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    const handleStorageChange = () => {
+      setIsLoggedIn(!!localStorage.getItem("token"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const handleRegister = () => {
@@ -28,8 +31,8 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token
-    setIsLoggedIn(false); // Update state
+    localStorage.removeItem("token");
+    setIsLoggedIn(false); // Update state manually
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -82,7 +85,11 @@ const Home = () => {
         {menuOpen && (
           <div className="mobil-auth-buttons">
             <hr className="hrformobile" />
-            {!isLoggedIn ? (
+            {isLoggedIn ? (
+              <button className="nav-button-log-mob" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
               <>
                 <button className="nav-button-log-mob" onClick={handleLogin}>
                   Login
@@ -92,10 +99,6 @@ const Home = () => {
                   Get Started
                 </button>
               </>
-            ) : (
-              <button className="nav-button-log-mob" onClick={handleLogout}>
-                Logout
-              </button>
             )}
           </div>
         )}
