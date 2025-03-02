@@ -10,13 +10,10 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // ✅ Check token at start
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    localStorage.removeItem("token"); // 🔥 Removes default token
+    setIsLoggedIn(false);
   }, []);
+  
 
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem("token"));
