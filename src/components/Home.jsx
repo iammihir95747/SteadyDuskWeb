@@ -12,14 +12,13 @@ const Home = () => {
   // ✅ Check if token exists when component loads
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token); // Convert token to boolean (true/false)
+    setIsLoggedIn(!!token);
   }, []);
 
-  // ✅ Update isLoggedIn when token changes
+  // ✅ Listen for storage changes (login/logout)
   useEffect(() => {
     const handleStorageChange = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
+      setIsLoggedIn(!!localStorage.getItem("token"));
     };
 
     window.addEventListener("storage", handleStorageChange);
@@ -27,20 +26,21 @@ const Home = () => {
   }, []);
 
   const handleRegister = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => navigate("/Register"), 300);
+    navigate("/Register");
     setMenuOpen(false);
   };
 
   const handleLogin = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    navigate("/Login"); // Redirect to Login page
+    // ✅ Simulate login (In real case, set this when user logs in)
+    localStorage.setItem("token", "your_fake_token"); // Set token
+    setIsLoggedIn(true); // ✅ Update state immediately
+    navigate("/Homepage"); // Redirect to homepage
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from localStorage
-    setIsLoggedIn(false); // Update state manually
+    localStorage.removeItem("token"); // Remove token
+    setIsLoggedIn(false); // ✅ Update state immediately
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
