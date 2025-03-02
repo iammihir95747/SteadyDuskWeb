@@ -7,11 +7,19 @@ import "./Nav.css";
 const Home = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // ✅ Check if token exists when component loads
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // Convert token to boolean (true/false)
+  }, []);
+
+  // ✅ Update isLoggedIn when token changes
   useEffect(() => {
     const handleStorageChange = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
     };
 
     window.addEventListener("storage", handleStorageChange);
@@ -26,12 +34,12 @@ const Home = () => {
 
   const handleLogin = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => navigate("/Login"), 300); // Redirect to Login page
+    navigate("/Login"); // Redirect to Login page
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token"); // Remove token from localStorage
     setIsLoggedIn(false); // Update state manually
   };
 
