@@ -11,10 +11,12 @@ function Register() {
    const [email, setEmail] = useState("");
      const [password, setPassword] = useState("");
      const navigate = useNavigate();
-     
+     const [loading, setLoading] = useState(false);
 
      const handleLogin = async (e) => {
          e.preventDefault();
+         setLoading(true);
+
          if (!email || !password) {
            toast.error("❌ Email and Password are required");
            return;
@@ -43,6 +45,9 @@ function Register() {
            toast.error(error.message);
            console.error("Login Error:", error.message); 
          }
+         finally{
+          setLoading(false);
+         }
        };
 
     return (
@@ -69,8 +74,8 @@ function Register() {
                           onChange={(e) => setPassword(e.target.value)}
                         required={true} autoComplete='new-password' />
  
-              <button type="submit" className="sub">
-                Login
+              <button type="submit" className="sub" disabled={loading}>
+                {loading ? "Logging..." : "Login"}
               </button>
               <ToastContainer
                position="top-right" 

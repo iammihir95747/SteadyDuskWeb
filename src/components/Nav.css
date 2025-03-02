@@ -30,10 +30,9 @@
     font-size: 30px;
     cursor: pointer;
     margin-left: 15px;
+    
   }
-  .menu-toggle:hover{
-    transition: 0.6s ease;
-  }
+
   
   .nav-menu {
     list-style: none;
@@ -88,9 +87,9 @@
    background-color: #000000;
     color: rgb(253, 253, 253);
     border: none;
-    padding: 6px 10px 6px;
+     
     font-weight: 500;
-    font-size: large;
+    font-size: px;
     cursor: pointer;
     border-radius: 3px;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.6); 
@@ -98,51 +97,45 @@
  
   .nav-button-log{
     background: none;
-    color: #000000;
+    color: black;
     border: none;
-    padding: 4px 10px;
-    font-weight: 500;
-    font-size: large;
+    font-weight: 300;
+    font-size: 18px;
     cursor: pointer;
-    margin-right: 20px;
-    color: #fff;
-    background-color: #000000;
+    margin-right: 15px;
+    font-family:Arial, Helvetica, sans-serif;
     border-radius: 10px;
+
   }
-  .nav-button-log:hover{
-    color: #ffffff;
-    transition: 0.4s ease;
-    background-color: #000000;
-   
-  } 
-
-
   
-  .nav-button:hover {
-    background-color: rgb(255, 255, 255);
-    transition: 0.2s ease-in-out;
-    color:#000000;
-  }
+  
   
   /* ✅ Responsive Styles */  
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
+      transition: 0.5s ease-in-out;
     }
   
+    .nav-left{
+         margin-left: 16%;
+    }
+
+
     .nav-menu {
       flex-direction: column;
-      width: 100%;
+      width: 80%;
       display: none;
       padding: 10px;
-      background-color: white;
-      position: absolute;
+      background-color: white;  
       top: 60px;
       left: 0;
+       overflow: hidden;
     }
   
     .nav-menu.active {
       display: flex;
+      transition: 0.5s ease-out;
     }
   
     .navlink {
@@ -156,12 +149,46 @@
     }
   }
   
-  @media (min-width: 769px) {
-    .menu-toggle {
-      display: none;
-    }
+ @media (max-width: 768px) {
+  .desktop-only {
+    display: none; /* Hide buttons in mobile */
   }
 
+  .nav-button-mob{
+    background-color: black;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+  }
+   
+  .mobil-auth-buttons {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+     margin-top: 10px;
+     width:620px;
+  }
+  .hrformobile{
+    border: 1px solid rgb(0, 0, 0);
+    width: 100%;
+    margin-top: 0px;
+  }
 
+   .nav-button-log-mob{
+      background-color: #fff;
+      color: #000000;
+       margin-left: 4px;
+   }
+
+
+}
+
+@media (min-width: 769px) {
+  .mobil-auth-buttons {
+    display: none; /* Hide mobile buttons on desktop */
+  }
+}
 
   
