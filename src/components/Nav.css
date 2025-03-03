@@ -118,9 +118,14 @@
     }
   
     .nav-left{
-         margin-left: 16%;
+         margin-left: -10%;
     }
+      
 
+    .menu-toggle{
+      height: 44px;
+      margin-left: 210PX;
+    }
 
     .nav-menu {
       flex-direction: column;
