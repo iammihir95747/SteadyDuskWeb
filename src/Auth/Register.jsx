@@ -67,7 +67,7 @@ const Register = () => {
           <div>
             <input className="form-item" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter phone Number" required />
           </div>
-
+                 <hr className="registerhr" />
           <div className="checkbox">
             <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} />
             <span className="cheakout">By creating an account, you agree to our terms of service.</span>
