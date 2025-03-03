@@ -1,3 +1,9 @@
+body{
+    overflow-y: hidden;  
+
+    overflow-x: hidden;
+} 
+
 .register-container {
     display: grid;
     row-gap: 10px;
@@ -6,6 +12,7 @@
     margin-top: -20px;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* ✅ Keep images on desktop, hide on mobile */
@@ -70,6 +77,17 @@
     margin-top: -200px;
 }
 
+.nav-button-log-mob{
+    padding: 8px;
+    border: 0.5px solid rgb(138, 134, 134);
+    border-radius: 4px;
+}
+
+
+
+
+
+
 /* ✅ Adjust form for small screens only */
 @media (max-width: 768px) {
     .form-block {
@@ -113,6 +131,8 @@
     font-weight: 400;
     text-align: center;
     border-radius: 3px;
+    width: 80%;
+    margin-top: 20px;
 }
 .sub:hover{
     background-color: rgb(0, 0, 0);
@@ -122,7 +142,7 @@
 /* ✅ Mobile button adjustments */
 @media (max-width: 768px) {
     .sub {
-        width: 90%;
+          width: 100%;
     }
 }
 
