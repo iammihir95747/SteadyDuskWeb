@@ -42,12 +42,10 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <div className="register-aside"><img src="register-img" alt="" /></div>
+     
       <div className="register">
         <form className="form-block" autoComplete="off" onSubmit={handleSubmit}>
-          <h1 className="titilereg">Create Your Account</h1>
-          <p className="para">It's free for 14 days. No credit card required.</p>
-
+          <h5 className="titilereg">Think it. Make it. <br /><span className="actext">Create your SteadyDusk account</span></h5>
           <div>
             <input className="form-item" type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Enter username" required />
           </div>
@@ -68,9 +66,9 @@ const Register = () => {
             <input className="form-item" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter phone Number" required />
           </div>
                  <hr className="registerhr" />
-          <div className="checkbox">
-            <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} />
-            <span className="cheakout">By creating an account, you agree to our terms of service.</span>
+                 <div>
+                  <label htmlFor="Workemail" className="lableitem">Work Email</label>
+            <input className="form-item-work" type="email" name="emailwork"  placeholder="Enter your email address..." required />
           </div>
 
           <button className="sub" type="submit" disabled={loading}>

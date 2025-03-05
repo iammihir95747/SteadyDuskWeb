@@ -53,8 +53,7 @@ function Register() {
   return (
 
     <div className='register-container'>
-      <div className="login-aside">
-         </div>
+    
            <div className="register">
              <div className="form">
               <form action="/" className='form-block' autoComplete='off'
