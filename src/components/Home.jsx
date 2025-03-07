@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 
@@ -6,6 +6,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    const checkAuth = () => setIsLoggedIn(!!localStorage.getItem("token"));
+    window.addEventListener("storage", checkAuth); // Listen for storage changes
+    return () => window.removeEventListener("storage", checkAuth);
+  }, []);
 
   const handleRegister = () => {
     navigate("/register");
@@ -36,33 +42,30 @@ const Navbar = () => {
           <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
           {/* Mobile Auth Buttons */}
           <div className="mobile-auth-buttons">
-            {!isLoggedIn ? (
+            {isLoggedIn ? (
+              <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
+            ) : (
               <>
                 <button className="nav-button-login" onClick={handleLogin}>Login</button>
                 <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
               </>
-            ) : (
-              <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
             )}
           </div>
         </ul>
-            <div className="menu-toggle" onClick={toggleMenu}>☰</div>
+        <div className="menu-toggle" onClick={toggleMenu}>☰</div>
       </div>
 
       {/* Right Section (Buttons) */}
       <div className="nav-right desktop-only">
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
+          <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
+        ) : (
           <>
             <button className="nav-button-login" onClick={handleLogin}>Login</button>
             <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
           </>
-        ) : (
-          <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
         )}
       </div>
-
-      {/* Menu Toggle Button */}
-      
     </nav>
   );
 };
