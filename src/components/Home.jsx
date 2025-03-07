@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login state when component mounts or token changes
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  // Function to update login state after login/logout
+  const updateLoginState = () => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  };
 
   const handleRegister = () => {
     navigate("/register");
@@ -19,22 +31,19 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    updateLoginState(); // Update state after removing token
     setMenuOpen(false);
+    navigate("/"); // Redirect after logout
   };
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <nav className="navbar">
-      {/* Left Section (Logo + Menu) */}
       <div className="nav-left">
         <div className="nav-logo">Steady Dusk</div>
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
-          <li><Link to="/" className="nav-link" onClick={toggleMenu}>Home</Link></li>
-          <li><Link to="/services" className="nav-link" onClick={toggleMenu}>Services</Link></li>
-          <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
-          {/* Mobile Auth Buttons */}
+          <li><Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          <li><Link to="/services" className="nav-link" onClick={() => setMenuOpen(false)}>Services</Link></li>
+          <li><Link to="/about" className="nav-link" onClick={() => setMenuOpen(false)}>About</Link></li>
           <div className="mobile-auth-buttons">
             {!isLoggedIn ? (
               <>
@@ -46,10 +55,9 @@ const Navbar = () => {
             )}
           </div>
         </ul>
-            <div className="menu-toggle" onClick={toggleMenu}>☰</div>
+        <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>☰</div>
       </div>
 
-      {/* Right Section (Buttons) */}
       <div className="nav-right desktop-only">
         {!isLoggedIn ? (
           <>
@@ -60,9 +68,6 @@ const Navbar = () => {
           <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
         )}
       </div>
-
-      {/* Menu Toggle Button */}
-      
     </nav>
   );
 };
