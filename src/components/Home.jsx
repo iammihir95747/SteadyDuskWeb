@@ -5,19 +5,17 @@ import "./Nav.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-  // Check login state when component mounts or token changes
+  // Track login/logout by watching localStorage changes
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+    const handleStorageChange = () => {
+      setIsLoggedIn(!!localStorage.getItem("token"));
+    };
 
-  // Function to update login state after login/logout
-  const updateLoginState = () => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const handleRegister = () => {
     navigate("/register");
@@ -31,7 +29,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    updateLoginState(); // Update state after removing token
+    setIsLoggedIn(false);
     setMenuOpen(false);
     navigate("/"); // Redirect after logout
   };
