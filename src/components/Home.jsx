@@ -59,7 +59,7 @@ const Navbar = () => {
       <div className="nav-right desktop-only">
         {!isLoggedIn ? (
           <>
-            <button className="nav-button-login" onClick={handleLogin}>Login</button>
+            <button className="nav-button" onClick={handleLogin}>Login</button>
             <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
           </>
         ) : (
