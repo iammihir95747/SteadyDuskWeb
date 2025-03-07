@@ -11,6 +11,14 @@ const Navbar = () => {
     // Check for token when the component mounts
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
+
+    // Listen for token changes
+    const handleStorageChange = () => {
+      setIsLoggedIn(!!localStorage.getItem("token"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const handleRegister = () => {
