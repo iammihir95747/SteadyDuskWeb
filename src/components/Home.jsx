@@ -23,14 +23,14 @@ const Navbar = () => {
   const handleRegister = () => {
     localStorage.setItem("token", "your-token");
     setIsLoggedIn(true);
-    navigate("/profile");
+    navigate("/login");
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    navigate("/");
+    navigate("/home");
     setMenuOpen(false);
   };
 
