@@ -1,84 +1,70 @@
-import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 
-const Home = () => {
+const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // ✅ Check token at start
-
-  useEffect(() => {
-    localStorage.removeItem("token"); // 🔥 Removes default token
-    setIsLoggedIn(false);
-  }, []);
-  
-
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, [localStorage.getItem("token")]); // ✅ Fix: Ensure updates on token change
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   const handleRegister = () => {
-    navigate("/Register");
+    navigate("/register");
     setMenuOpen(false);
   };
 
   const handleLogin = () => {
-    navigate("/Login");
+    navigate("/login");
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // ✅ Remove token
-    setIsLoggedIn(false); // ✅ Update state instantly
-    window.dispatchEvent(new Event("storage")); // ✅ Trigger re-render across tabs
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setMenuOpen(false);
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <>
-      <nav className="navbar">
-        <div className="nav-left">
-          <div className="nav-logo">Steady Dusk</div>
-          <div className="menu-toggle" onClick={toggleMenu}>☰</div>
-        </div>
-
+    <nav className="navbar">
+      {/* Left Section (Logo + Menu) */}
+      <div className="nav-left">
+        <div className="nav-logo">Steady Dusk</div>
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
-          <li><Link to="/Homepage" className="navlink" onClick={toggleMenu}>Home</Link></li>
-          <li><Link to="/Services" className="navlink" onClick={toggleMenu}>Services</Link></li>
-          <li><Link to="/About" className="navlink" onClick={toggleMenu}>About</Link></li>
-        </ul>
-
-        <div className="nav-right desktop-only">
-          {isLoggedIn ? (
-            <button className="nav-button-log" onClick={handleLogout}>Logout</button>
-          ) : (
-            <>
-              <button className="nav-button-log" onClick={handleLogin}>Login</button>
-              <button className="nav-button" onClick={handleRegister}>Get Started - It's free</button>
-            </>
-          )}
-        </div>
-
-        {menuOpen && (
-          <div className="mobil-auth-buttons">
-            <hr className="hrformobile" />
-            {isLoggedIn ? (
-              <button className="nav-button-log-mob" onClick={handleLogout}>Logout</button>
-            ) : (
+          <li><Link to="/" className="nav-link" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/services" className="nav-link" onClick={toggleMenu}>Services</Link></li>
+          <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
+          {/* Mobile Auth Buttons */}
+          <div className="mobile-auth-buttons">
+            {!isLoggedIn ? (
               <>
-                <button className="nav-button-log-mob" onClick={handleLogin}>Login</button>
-                <br />
-                <button className="nav-button-mob" onClick={handleRegister}>Get Started</button>
+                <button className="nav-button-login" onClick={handleLogin}>Login</button>
+                <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
               </>
+            ) : (
+              <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
             )}
           </div>
+        </ul>
+            <div className="menu-toggle" onClick={toggleMenu}>☰</div>
+      </div>
+
+      {/* Right Section (Buttons) */}
+      <div className="nav-right desktop-only">
+        {!isLoggedIn ? (
+          <>
+            <button className="nav-button-login" onClick={handleLogin}>Login</button>
+            <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
+          </>
+        ) : (
+          <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
         )}
-      </nav>
-    </>
+      </div>
+
+      {/* Menu Toggle Button */}
+      
+    </nav>
   );
 };
 
-export default Home;
+export default Navbar;

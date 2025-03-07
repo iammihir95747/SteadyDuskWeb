@@ -55,21 +55,18 @@ function Register() {
     <div className='register-container'>
     
            <div className="register">
-             <div className="form">
+             <div className="form-login">
               <form action="/" className='form-block' autoComplete='off'
             onSubmit={handleLogin}
              >
-            <h1 className='titilereg'>Login</h1>
-            <p className='para'>It's free for 14 days. No credit card required.</p>
-
-
-
-            <input className='form-item-log' type="email" name='email' placeholder="Your email.com"
+             <h5 className="titilereg">Think it. Make it. <br /><span className="actext">Log in to your SteadyDusk account</span></h5>
+         
+            <input className='form-item' type="email" name='email' placeholder="Your email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required={true} autoComplete='off' />
 
-            <input className='form-item-log' type="password" name='password' placeholder="Password"
+            <input className='form-item' type="password" name='password' placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required={true} autoComplete='new-password' />

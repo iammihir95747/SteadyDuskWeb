@@ -69,6 +69,9 @@ const Register = () => {
                  <div>
                   <label htmlFor="Workemail" className="lableitem">Work Email</label>
             <input className="form-item-work" type="email" name="emailwork"  placeholder="Enter your email address..." required />
+            <div className="subtext">
+            Use an organization email to easily collaborate with teammates
+            </div>
           </div>
 
           <button className="sub" type="submit" disabled={loading}>
@@ -78,6 +81,12 @@ const Register = () => {
            reverseOrder={false}
            color='#fff'
           /></div>
+
+
+          <div className="policy">
+          Your name and photo are displayed to users who invite you to a workspace using your email. By continuing, you acknowledge that you understand and agree to the <a href="">Terms & Conditions</a> 
+           and <a href="">Privacy Policy</a> 
+          </div>
         </form>
       </div>
     </div>
