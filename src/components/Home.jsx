@@ -5,29 +5,24 @@ import "./Nav.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Default to false
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check for token when the component mounts
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-
-    // Listen for token changes
-    const handleStorageChange = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    // Check token on mount
+    setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
-  const handleRegister = () => {
-    navigate("/register");
+  const handleLogin = () => {
+    localStorage.setItem("token", "your-token"); // Simulating login
+    setIsLoggedIn(true);
+    navigate("/login");
     setMenuOpen(false);
   };
 
-  const handleLogin = () => {
-    navigate("/login");
+  const handleRegister = () => {
+    localStorage.setItem("token", "your-token"); // Simulating register
+    setIsLoggedIn(true);
+    navigate("/register");
     setMenuOpen(false);
   };
 
@@ -41,7 +36,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      {/* Left Section (Logo + Menu) */}
       <div className="nav-left">
         <div className="nav-logo">Steady Dusk</div>
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
