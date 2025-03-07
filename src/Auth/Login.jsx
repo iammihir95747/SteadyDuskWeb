@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer, Bounce } from "react-toastify";
+import { toast, Toaster } from "react-hot-toast";
+
 
 const API_BASE = "https://server-node-eef9.onrender.com";
 
@@ -86,13 +87,10 @@ function Login() { // ✅ Renamed to match functionality
               {loading ? "Logging in..." : "Login"}
             </button>
 
-            <ToastContainer
-              position="top-right"
-              autoClose={5000} 
-              hideProgressBar={false}
-              theme="dark"
-              transition={Bounce} 
-            />
+            <div><Toaster position="top-right"
+           reverseOrder={false}
+           color='#fff'
+          /></div>
           </form>
         </div>
       </div>
