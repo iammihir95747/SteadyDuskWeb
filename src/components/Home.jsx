@@ -7,30 +7,31 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Check authentication state on load
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token && token !== "undefined");
+    setIsLoggedIn(token ? true : false);
   }, []);
 
   const handleLogin = () => {
     localStorage.setItem("token", "your-token");
     setIsLoggedIn(true);
-    navigate("/login");
+    navigate("/profile");
     setMenuOpen(false);
   };
 
   const handleRegister = () => {
     localStorage.setItem("token", "your-token");
     setIsLoggedIn(true);
-    navigate("/register");
+    navigate("/profile");
     setMenuOpen(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    setMenuOpen(false);
     navigate("/");
+    setMenuOpen(false);
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
