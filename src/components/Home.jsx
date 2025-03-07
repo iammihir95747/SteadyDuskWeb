@@ -8,29 +8,15 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check token on mount
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
-
-  const handleLogin = () => {
-    localStorage.setItem("token", "your-token"); // Simulating login
-    setIsLoggedIn(true);
-    navigate("/login");
-    setMenuOpen(false);
-  };
-
-  const handleRegister = () => {
-    localStorage.setItem("token", "your-token"); // Simulating register
-    setIsLoggedIn(true);
-    navigate("/register");
-    setMenuOpen(false);
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setMenuOpen(false);
+    navigate("/login");
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -49,8 +35,8 @@ const Navbar = () => {
               <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
             ) : (
               <>
-                <button className="nav-button-login" onClick={handleLogin}>Login</button>
-                <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
+                <button className="nav-button-login" onClick={() => navigate("/login")}>Login</button>
+                <button className="nav-button" onClick={() => navigate("/register")}>Sign up for free</button>
               </>
             )}
           </div>
@@ -61,11 +47,11 @@ const Navbar = () => {
       {/* Right Section (Buttons) */}
       <div className="nav-right desktop-only">
         {isLoggedIn ? (
-          <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
+          <button className="nav-button" onClick={handleLogout}>Logout</button>
         ) : (
           <>
-            <button className="nav-button-login" onClick={handleLogin}>Login</button>
-            <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
+            <button className="nav-button-login" onClick={() => navigate("/login")}>Login</button>
+            <button className="nav-button" onClick={() => navigate("/register")}>Sign up for free</button>
           </>
         )}
       </div>
