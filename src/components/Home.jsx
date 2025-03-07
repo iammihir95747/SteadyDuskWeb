@@ -9,7 +9,8 @@ const Navbar = () => {
 
   useEffect(() => {
     // Check token on mount
-    setIsLoggedIn(!!localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogin = () => {
