@@ -8,17 +8,13 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token && token !== "undefined");
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
+    const checkAuth = () => {
       const token = localStorage.getItem("token");
       setIsLoggedIn(!!token && token !== "undefined");
     };
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    checkAuth();
+    window.addEventListener("storage", checkAuth);
+    return () => window.removeEventListener("storage", checkAuth);
   }, []);
 
   const handleLogout = () => {
