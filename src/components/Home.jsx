@@ -5,12 +5,12 @@ import "./Nav.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Default to false
 
   useEffect(() => {
-    const checkAuth = () => setIsLoggedIn(!!localStorage.getItem("token"));
-    window.addEventListener("storage", checkAuth); // Listen for storage changes
-    return () => window.removeEventListener("storage", checkAuth);
+    // Check for token when the component mounts
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleRegister = () => {
