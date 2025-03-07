@@ -49,7 +49,7 @@ const Navbar = () => {
                 <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
               </>
             ) : (
-              <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
+              <button className="nav-button" onClick={handleLogout}>Logout</button>
             )}
           </div>
         </ul>
@@ -59,11 +59,11 @@ const Navbar = () => {
       <div className="nav-right desktop-only">
         {!isLoggedIn ? (
           <>
-            <button className="nav-button" onClick={handleLogin}>Login</button>
+            <button className="nav-button-login" onClick={handleLogin}>Login</button>
             <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
           </>
         ) : (
-          <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
+          <button className="nav-button" onClick={handleLogout}>Logout</button>
         )}
       </div>
     </nav>
