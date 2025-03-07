@@ -8,13 +8,8 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token && token !== "undefined");
-    };
-    checkAuth();
-    window.addEventListener("storage", checkAuth);
-    return () => window.removeEventListener("storage", checkAuth);
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token && token !== "undefined");
   }, []);
 
   const handleLogin = () => {
@@ -35,7 +30,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setMenuOpen(false);
-    navigate("/login");
+    navigate("/");
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -48,6 +43,7 @@ const Navbar = () => {
           <li><Link to="/" className="nav-link" onClick={toggleMenu}>Home</Link></li>
           <li><Link to="/services" className="nav-link" onClick={toggleMenu}>Services</Link></li>
           <li><Link to="/about" className="nav-link" onClick={toggleMenu}>About</Link></li>
+
           {/* Mobile Auth Buttons */}
           <div className="mobile-auth-buttons">
             {isLoggedIn ? (
