@@ -17,6 +17,20 @@ const Navbar = () => {
     return () => window.removeEventListener("storage", checkAuth);
   }, []);
 
+  const handleLogin = () => {
+    localStorage.setItem("token", "your-token");
+    setIsLoggedIn(true);
+    navigate("/login");
+    setMenuOpen(false);
+  };
+
+  const handleRegister = () => {
+    localStorage.setItem("token", "your-token");
+    setIsLoggedIn(true);
+    navigate("/register");
+    setMenuOpen(false);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
@@ -40,8 +54,8 @@ const Navbar = () => {
               <button className="nav-button-logout" onClick={handleLogout}>Logout</button>
             ) : (
               <>
-                <button className="nav-button-login" onClick={() => navigate("/login")}>Login</button>
-                <button className="nav-button" onClick={() => navigate("/register")}>Sign up for free</button>
+                <button className="nav-button-login" onClick={handleLogin}>Login</button>
+                <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
               </>
             )}
           </div>
@@ -55,8 +69,8 @@ const Navbar = () => {
           <button className="nav-button" onClick={handleLogout}>Logout</button>
         ) : (
           <>
-            <button className="nav-button-login" onClick={() => navigate("/login")}>Login</button>
-            <button className="nav-button" onClick={() => navigate("/register")}>Sign up for free</button>
+            <button className="nav-button-login" onClick={handleLogin}>Login</button>
+            <button className="nav-button" onClick={handleRegister}>Sign up for free</button>
           </>
         )}
       </div>
