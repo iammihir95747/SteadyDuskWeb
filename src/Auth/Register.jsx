@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Register.css";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -6,12 +6,21 @@ import { toast, Toaster } from "react-hot-toast";
 const API_BASE = "https://server-node-eef9.onrender.com";
 
 
-const Register = () => {
+const Register = ({setIsshow}) => {
   const [formData, setFormData] = useState({
     username: "", email: "", password: "", address: "", phone: "", agreeTerms: false
   });
   const [loading, setLoading] = useState(false);
 
+
+  useEffect(()=>{
+    setIsshow(false);
+
+    return () =>{
+      setIsshow(true);
+    }
+  },[setIsshow]);
+ 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
