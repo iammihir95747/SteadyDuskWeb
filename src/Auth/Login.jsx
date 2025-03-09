@@ -58,15 +58,12 @@ function Login() { // ✅ Renamed to match functionality
       <div className="register">
         <div className="form-login">
           <form className='form-block' autoComplete='off' onSubmit={handleLogin}>
-            <h5 className="titilereg">
-              Think it. Make it. <br />
-              <span className="actext">Log in to your SteadyDusk account</span>
-            </h5>
+          <h5 className="titilereg">Think it. Make it. <br /><span className="actext">Create your SteadyDusk account</span></h5>
 
             <input 
               className='form-item' 
               type="email" 
-              placeholder="Your email.com"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required 
