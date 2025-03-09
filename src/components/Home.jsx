@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import "./Nav.css";
 
 const Navbar = () => {
@@ -37,9 +37,8 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <div className="nav-logo">Steady Dusk</div>
+        <div className="nav-logo"><Link to="/" className="nav-logo">Steady Dusk</Link></div>
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
-          <li><Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>Home</Link></li>
           <li><Link to="/services" className="nav-link" onClick={() => setMenuOpen(false)}>Services</Link></li>
           <li><Link to="/about" className="nav-link" onClick={() => setMenuOpen(false)}>About</Link></li>
           <div className="mobile-auth-buttons">
