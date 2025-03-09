@@ -41,6 +41,7 @@ const Navbar = () => {
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
           <li><Link to="/services" className="nav-link" onClick={() => setMenuOpen(false)}>Services</Link></li>
           <li><Link to="/about" className="nav-link" onClick={() => setMenuOpen(false)}>About</Link></li>
+          
           <div className="mobile-auth-buttons">
             {!isLoggedIn ? (
               <>
